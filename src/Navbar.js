@@ -8,29 +8,53 @@ import LoginPage from './route/LoginPage.js';
 
 
 class Navbar extends Component {
-    handleLogOut = (e) => {
-        this.props.logOut();
+    constructor() {
+        super();
+        this.state = {
+            loggedIn: false,
+            userName: null
+        }
+    }
+
+    // logIn = (loginDeatails) => {
+    //     this.setState({
+    //         loggedIn: true,
+    //         userName: loginDetails.userName
+    //     })
+    // }
+
+    logOut = () => {
+        this.setState({
+            loggedIn: false,
+            userName: null
+        })
     }
 
     render() {
         return (
             <Router>
-                <div className="container">
-                    <nav className="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav mr-auto">
+                <div>
+                    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+                        <a className="navbar-brand abs" href="/">LOGO</a>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+                            <div className="navbar-toggler-icon"></div>
+                        </button>
+                        <div className="navbar-collapse collapse" id="collapsingNavbar">
+                            <ul className="navbar-nav">
                                 <li className="nav-item"><Link to="/" className="nav-link">Recipe Search</Link></li>
                                 <li className="nav-item"><Link to="/myrecipes" className="nav-link">My Recipes</Link></li>
                                 <li className="nav-item"><Link to="/mealplan" className="nav-link">Meal Plan</Link></li>
                                 <li className="nav-item"><Link to="/shoppinglist" className="nav-link">Shopping List</Link></li>
-                                {this.props.loggedIn ?  
-                                <li className="nav-item"><Link to="/" className="nav-link" onClick={this.handleLogOut}>Log Out</Link></li> :
-                                <li className="nav-item"><Link to="/login" className="nav-link">Log In</Link></li>
+                            </ul>
+                            <ul className="navbar-nav ml-auto">
+                                {this.state.loggedIn ?
+                                    
+                                    <li className="nav-item"><Link to="/" className="nav-link" onClick={this.logOut}>Log Out</Link></li> :
+                                    <li className="nav-item"><Link to="/login" className="nav-link" onClick={this.logOut}>Log In</Link></li>
                                 }
                             </ul>
-                            <hr />
                         </div>
-                    </nav>
+                    </nav><br />
                     <Route exact path='/' component={RecipeSearch} />
                     <Route path='/myrecipes' component={MyRecipes} />
                     <Route path='/mealplan' component={MealPlan} />
