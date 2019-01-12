@@ -16,12 +16,12 @@ class Navbar extends Component {
         }
     }
 
-    // logIn = (loginDeatails) => {
-    //     this.setState({
-    //         loggedIn: true,
-    //         userName: loginDetails.userName
-    //     })
-    // }
+    logIn = (loginDetails) => {
+        this.setState({
+            loggedIn: true,
+            userName: loginDetails.userName
+        })
+    }
 
     logOut = () => {
         this.setState({
@@ -47,8 +47,7 @@ class Navbar extends Component {
                                 <li className="nav-item"><Link to="/shoppinglist" className="nav-link">Shopping List</Link></li>
                             </ul>
                             <ul className="navbar-nav ml-auto">
-                                {this.state.loggedIn ?
-                                    
+                                {this.state.loggedIn ?                                    
                                     <li className="nav-item"><Link to="/" className="nav-link" onClick={this.logOut}>Log Out</Link></li> :
                                     <li className="nav-item"><Link to="/login" className="nav-link" onClick={this.logOut}>Log In</Link></li>
                                 }
