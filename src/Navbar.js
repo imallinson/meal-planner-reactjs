@@ -16,20 +16,6 @@ class Navbar extends Component {
         }
     }
 
-    logIn = (loginDetails) => {
-        this.setState({
-            loggedIn: true,
-            userName: loginDetails.userName
-        })
-    }
-
-    logOut = () => {
-        this.setState({
-            loggedIn: false,
-            userName: null
-        })
-    }
-
     render() {
         return (
             <Router>
@@ -48,8 +34,8 @@ class Navbar extends Component {
                             </ul>
                             <ul className="navbar-nav ml-auto">
                                 {this.state.loggedIn ?                                    
-                                    <li className="nav-item"><Link to="/" className="nav-link" onClick={this.logOut}>Log Out</Link></li> :
-                                    <li className="nav-item"><Link to="/login" className="nav-link" onClick={this.logOut}>Log In</Link></li>
+                                    <li className="nav-item"><Link to="/" className="nav-link">Log Out</Link></li> :
+                                    <li className="nav-item"><Link to="/login" className="nav-link">Log In</Link></li>
                                 }
                             </ul>
                         </div>

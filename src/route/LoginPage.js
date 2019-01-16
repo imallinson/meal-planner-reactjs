@@ -5,13 +5,12 @@ class LoginPage extends Component {
         super();
         this.state = {
             loggedIn: false,
-            userName: null,
+            username: null,
             password: null
         }
     }
 
     logIn = (e) => {
-        e.overideDefault();
         //check if user exists and password
         this.setState({
             loggedIn: true
@@ -19,34 +18,36 @@ class LoginPage extends Component {
     }
 
     createUser = (e) => {
-        e.overideDefault();
         //if username does not exist push to user db
         this.setState({
             loggedIn: true
         })
     }
 
-    // handleChange = (e) => {
-    //     this.setState({
-    //         userName: 
-    //     })
-    // }
+    handleUsernameChange = (e) => {
+         this.setState({
+            username: e.target.value
+         })
+    }
+
+    handlePasswordChange = (e) => {
+        this.setState({
+            password: e.target.value
+        })
+   }
 
     render() {
         return (
             <div>
                 <div className="row">
-                    <div className="col text-right">Username</div>
-                    <div className="col" ><input type="text"></input></div>
+                    <div className="col text-center" ><input className="rounded" type="text" placeholder="Username" onChange={this.handleUsernameChange}></input></div>
                 </div>
                 <div className="row">
-                    <div className="col text-right">Password</div>
-                    <div className="col" ><input type="text"></input></div>
+                    <div className="col text-center" ><input className="rounded" type="password" placeholder="Password" onChange={this.handlePasswordChange}></input></div>
                 </div>
                 <br />
                 <div className="row">
-                    <div className="col text-right"><button onClick={this.logIn}>Log In</button></div>
-                    <div className="col" ><button onClick={this.createUser}>Create Account</button></div>
+                    <div className="col text-center"><button className="rounded" onClick={this.logIn}>Log In</button> <button className="rounded" onClick={this.createUser}>Create Account</button></div>
                 </div>
             </div>
         );
