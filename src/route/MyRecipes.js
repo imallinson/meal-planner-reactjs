@@ -4,13 +4,19 @@ import RecipeSearchList from './RecipeSearchList.js'
 class MyRecipes extends Component {
     render() {
         return (
-            <div>
+            <div className="page">
                 <div className="row">
                     <div className="col text-center"><h3>My Recipes</h3></div>
                 </div>
                 <div className="row border rounded" id="recipeList">
-                    <RecipeSearchList username={null} />
+                    <div className="row">
+                        <div className="col text-center"><button>Add Recipe</button></div>
+                    </div>
+                    <div className="row">
+                        <div className="col text-center"><RecipeSearchList username={null} /></div>
+                    </div> 
                 </div>
+
             </div>
         );
     }

@@ -38,7 +38,7 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="page">
                 <div className="row">
                     <div className="col text-center" ><input className="rounded" type="text" placeholder="Username" onChange={this.handleUsernameChange}></input></div>
                 </div>

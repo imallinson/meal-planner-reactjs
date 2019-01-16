@@ -17,12 +17,12 @@ class RecipeSearch extends Component {
 
     render() {
         return (
-            <div>
+            <div className="page">
                 <div className="row">
                     <div className="col text-center"><h3>Search for Recipes</h3></div>
                 </div>
                 <div className="row">
-                    <div className="col text-center"><input className="rounded" type="text" id="recipeSearch" onChange={this.handleChange}></input></div>
+                    <div className="col text-center" id="recipeSearchBar"><input className="rounded" type="text" id="recipeSearch" onChange={this.handleChange}></input><button type="submit">Search</button></div>
                 </div>
                 <div className="row border rounded" id="recipeList">
                     <RecipeSearchList searchString={this.state.searchString} />

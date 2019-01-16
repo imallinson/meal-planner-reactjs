@@ -4,7 +4,7 @@ class RecipeSearchList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="page">
                 Recipe search results go here
             </div>
         );
