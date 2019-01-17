@@ -22,7 +22,10 @@ class RecipeSearch extends Component {
                     <div className="col text-center"><h3>Search for Recipes</h3></div>
                 </div>
                 <div className="row">
-                    <div className="col text-center" id="recipeSearchBar"><input className="rounded" type="text" id="recipeSearch" onChange={this.handleChange}></input><button type="submit">Search</button></div>
+                    <div className="col text-center">
+                        <input className="rounded" type="text" id="recipeSearch" onChange={this.handleChange}></input>
+                        <button className="btn pull-right" id="search-button" type="submit">Search</button>
+                    </div>
                 </div>
                 <div className="row border rounded" id="recipeList">
                     <RecipeSearchList searchString={this.state.searchString} />

@@ -1,9 +1,11 @@
-#recipeSearchBar {
-    width: 90%
+#recipeSearch {
+    width: 90%;
 }
 
-#recipeSearch {
-    width: 85.6%
+#search-button {
+    position: absolute;
+    top: -4px;
+    right: 6%;
 }
 
 #recipeList {
