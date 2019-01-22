@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/materialize-css/dist/css/materialize.min.css';
 import './App.css';
 import Navbar from './Navbar.js';
 

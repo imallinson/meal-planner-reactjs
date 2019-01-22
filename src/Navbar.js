@@ -20,20 +20,17 @@ class Navbar extends Component {
         return (
             <Router>
                 <div>
-                    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-                        <a className="navbar-brand abs" href="/">LOGO</a>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-                            <div className="navbar-toggler-icon"></div>
-                        </button>
-                        <div className="navbar-collapse collapse" id="collapsingNavbar">
-                            <ul className="navbar-nav">
+                    <nav>
+                        <div className="nav-wrapper grey darken-3">
+                            <a href="#!" className="brand-logo center">Logo</a>
+                            <ul>
                                 <li className="nav-item"><Link to="/" className="nav-link">Recipe Search</Link></li>
                                 <li className="nav-item"><Link to="/myrecipes" className="nav-link">My Recipes</Link></li>
                                 <li className="nav-item"><Link to="/mealplan" className="nav-link">Meal Plan</Link></li>
                                 <li className="nav-item"><Link to="/shoppinglist" className="nav-link">Shopping List</Link></li>
                             </ul>
-                            <ul className="navbar-nav ml-auto">
-                                {this.state.loggedIn ?                                    
+                            <ul className="right">
+                                {this.state.loggedIn ?
                                     <li className="nav-item"><Link to="/" className="nav-link">Log Out</Link></li> :
                                     <li className="nav-item"><Link to="/login" className="nav-link">Log In</Link></li>
                                 }
