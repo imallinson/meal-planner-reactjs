@@ -17,19 +17,16 @@ class RecipeSearch extends Component {
 
     render() {
         return (
-            <div className="page">
+            <div className="container">
                 <div className="row">
-                    <div className="col text-center"><h3>Search for Recipes</h3></div>
+                    <div className="col12 center"><h3>Search for Recipes</h3></div>
                 </div>
                 <div className="row">
-                    <div className="col text-center">
-                        <input className="rounded" type="text" id="recipeSearch" onChange={this.handleChange}></input>
-                        <button className="btn" id="searchButton" type="submit">Search</button>
+                    <div className="col12">
+                        <input className="validate" type="text" id="recipeSearch" onChange={this.handleChange}></input>
                     </div>
                 </div>
-                <div className="row border rounded" id="recipeList">
-                    <RecipeSearchList searchString={this.state.searchString} />
-                </div>
+                <RecipeSearchList searchString={this.state.searchString} editable={false} />
             </div>
         );
     }

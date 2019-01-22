@@ -12,7 +12,7 @@ class Navbar extends Component {
         super();
         this.state = {
             loggedIn: false,
-            userName: null
+            username: null
         }
     }
 
@@ -39,7 +39,7 @@ class Navbar extends Component {
                     </nav><br />
                     <Route exact path='/' component={RecipeSearch} />
                     <Route path='/myrecipes' component={MyRecipes} />
-                    <Route path='/mealplan' component={MealPlan} />
+                    <Route path='/mealplan' component={MealPlan} username={this.username} />
                     <Route path='/shoppinglist' component={ShoppingList} />
                     <Route path='/login' component={LoginPage} />
                 </div>
