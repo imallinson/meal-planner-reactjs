@@ -11,14 +11,30 @@ class LoginPage extends Component {
         }
     }
 
-    logIn = (e) => {
-        //check if user exists and password
-        this.setState({
-            loggedIn: true
+    logIn = () => {
+        axios({
+            method: 'get',
+            url: 'localhost:8080/rest/account/check',
+            responseType: 'json',
+            data: {
+                username: this.state.username,
+                password: this.state.password
+            }
+        })
+        .then(function (response) {
+            if (response.data = "\"message\": \"account sucessfully created\"") {
+                this.setState({
+                    loggedIn: true
+                })
+            }
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
         })
     }
 
-    createUser = (e) => {
+    createUser = () => {
         //if username does not exist push to user db
         this.setState({
             loggedIn: true
@@ -39,7 +55,7 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container" >
                 <div className="row">
                     <div className="col s4"></div>
                     <div className="col s4">
