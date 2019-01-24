@@ -5,16 +5,16 @@ class LoginPage extends Component {
     constructor() {
         super();
         this.state = {
-            loggedIn: false,
             username: null,
             password: null
         }
     }
 
-    logIn = () => {
+    logIn = (e) => {
+        e.preventDefault();
         axios({
-            method: 'get',
-            url: 'localhost:8080/rest/account/check',
+            method: 'put',
+            url: 'http://localhost:8081/meal-planner/rest/account/check',
             responseType: 'json',
             data: {
                 username: this.state.username,
@@ -22,10 +22,8 @@ class LoginPage extends Component {
             }
         })
         .then(function (response) {
-            if (response.data = "\"message\": \"account sucessfully created\"") {
-                this.setState({
-                    loggedIn: true
-                })
+            if (response.data.message === "logged in") {
+                this.props.handleLogin(this.state.username);
             }
             console.log(response);
         })
@@ -74,10 +72,10 @@ class LoginPage extends Component {
                 </div>
                 <div className="row">
                     <div className="col s2 push-s4 center">
-                        <button className="btn grey darken-2" type="submit" onClick={this.logIn}>Log In</button>
+                        <button className="btn grey darken-2" type="button" onClick={this.logIn}>Log In</button>
                     </div>
                     <div className="col s3 push-s3 center">
-                        <button className="btn grey darken-2" type="submit" onClick={this.createUser}>Create Account</button>
+                        <button className="btn grey darken-2" type="button" onClick={this.createUser}>Create Account</button>
                     </div>
                 </div>
             </div>

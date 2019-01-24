@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import MyRecipes from './route/MyRecipes.js';
 import RecipeSearch from './route/RecipeSearch.js';
 import MealPlan from './route/MealPlan.js';
@@ -14,6 +14,13 @@ class Navbar extends Component {
             loggedIn: false,
             username: null
         }
+    }
+
+    setUsername = (e) => {
+        this.setState({
+            loggedIn: true,
+            username: e.value
+        })
     }
 
     render() {
@@ -37,11 +44,12 @@ class Navbar extends Component {
                             </ul>
                         </div>
                     </nav><br />
-                    <Route exact path='/' component={RecipeSearch} />
-                    <Route path='/myrecipes' component={MyRecipes} />
-                    <Route path='/mealplan' component={MealPlan} username={this.username} />
-                    <Route path='/shoppinglist' component={ShoppingList} />
-                    <Route path='/login' component={LoginPage} />
+                    {this.state.loggedIn ? <Redirect to='/myrecipes' /> : <Redirect to='/myrecipes' />}
+                    <Route exact path="/" component={RecipeSearch} />
+                    <Route path="/myrecipes" component={MyRecipes} />
+                    <Route path="/mealplan" component={MealPlan} username={this.username} />
+                    <Route path="/shoppinglist" component={ShoppingList} />
+                    <Route path="/login" render={() => <LoginPage handleLogin={this.setUsername} /> } />
                 </div>
             </Router>
         );
