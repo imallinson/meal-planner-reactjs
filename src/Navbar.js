@@ -23,6 +23,13 @@ class Navbar extends Component {
         })
     }
 
+    logOut = () => {
+        this.setState({
+            loggedIn: false,
+            username: null
+        })
+    }
+
     render() {
         return (
             <Router>
@@ -31,21 +38,21 @@ class Navbar extends Component {
                         <div className="nav-wrapper grey darken-3">
                             <a href="#!" className="brand-logo center">Logo</a>
                             <ul>
-                                <li className="nav-item"><Link to="/" className="nav-link">Recipe Search</Link></li>
+                                <li className="nav-item"><Link to="/search" className="nav-link">Recipe Search</Link></li>
                                 <li className="nav-item"><Link to="/myrecipes" className="nav-link">My Recipes</Link></li>
                                 <li className="nav-item"><Link to="/mealplan" className="nav-link">Meal Plan</Link></li>
                                 <li className="nav-item"><Link to="/shoppinglist" className="nav-link">Shopping List</Link></li>
                             </ul>
                             <ul className="right">
                                 {this.state.loggedIn ?
-                                    <li className="nav-item"><Link to="/" className="nav-link">Log Out</Link></li> :
+                                    <li className="nav-item"><Link to="/search" className="nav-link" onClick={this.logOut}>Log Out</Link></li> :
                                     <li className="nav-item"><Link to="/login" className="nav-link">Log In</Link></li>
                                 }
                             </ul>
                         </div>
                     </nav><br />
-                    {this.state.loggedIn ? <Redirect to='/myrecipes' /> : <Redirect to='/myrecipes' />}
-                    <Route exact path="/" component={RecipeSearch} />
+                    {this.state.loggedIn ? <Redirect to='/myrecipes' /> : <Redirect to='/search' />}
+                    <Route path="/search" component={RecipeSearch} />
                     <Route path="/myrecipes" component={MyRecipes} />
                     <Route path="/mealplan" component={MealPlan} username={this.username} />
                     <Route path="/shoppinglist" component={ShoppingList} />
