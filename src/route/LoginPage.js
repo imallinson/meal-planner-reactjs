@@ -6,7 +6,8 @@ class LoginPage extends Component {
         super();
         this.state = {
             username: null,
-            password: null
+            password: null,
+            error: null
         }
     }
 
@@ -25,6 +26,10 @@ class LoginPage extends Component {
         .then(function (response) {
             if (response.data.message === "logged in") {
                 actuallyThis.props.handleLogin(actuallyThis.state.username);
+            } else {
+                actuallyThis.setState({
+                    error: response.data.message
+                });
             }
         })
         .catch(function (error) {
@@ -32,10 +37,29 @@ class LoginPage extends Component {
         })
     }
 
-    createUser = () => {
-        //if username does not exist push to user db
-        this.setState({
-            loggedIn: true
+    createUser = (e) => {
+        var actuallyThis = this;
+        e.preventDefault();
+        axios({
+            method: 'post',
+            url: 'http://localhost:8081/meal-planner/rest/account/create',
+            responseType: 'json',
+            data: {
+                username: this.state.username,
+                password: this.state.password
+            }
+        })
+        .then(function (response) {
+            if (response.data.message === "account sucessfully created") {
+                actuallyThis.props.handleLogin(actuallyThis.state.username);
+            } else {
+                actuallyThis.setState({
+                    error: response.data.message
+                });
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
         })
     }
 
@@ -67,6 +91,7 @@ class LoginPage extends Component {
                     <div className="col s4">
                         <label htmlFor="password">Password</label>
                         <input className="validate" type="password" id="password" onChange={this.handlePasswordChange}></input>
+                        <label className="helper-text">{this.state.error}</label>
                     </div>
                     <div className="col s4"></div>
                 </div>
