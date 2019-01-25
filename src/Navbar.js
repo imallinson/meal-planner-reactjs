@@ -16,10 +16,10 @@ class Navbar extends Component {
         }
     }
 
-    setUsername = (e) => {
+    setUsername = (username) => {
         this.setState({
             loggedIn: true,
-            username: e.value
+            username: username
         })
     }
 

@@ -11,6 +11,7 @@ class LoginPage extends Component {
     }
 
     logIn = (e) => {
+        var actuallyThis = this;
         e.preventDefault();
         axios({
             method: 'put',
@@ -23,9 +24,8 @@ class LoginPage extends Component {
         })
         .then(function (response) {
             if (response.data.message === "logged in") {
-                this.props.handleLogin(this.state.username);
+                actuallyThis.props.handleLogin(actuallyThis.state.username);
             }
-            console.log(response);
         })
         .catch(function (error) {
             console.log(error);
