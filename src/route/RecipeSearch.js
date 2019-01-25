@@ -1,17 +1,33 @@
 import React, { Component } from 'react';
-import RecipeSearchList from './RecipeSearchList.js'
+import RecipeSearchList from './RecipeSearchList.js';
+import axios from 'axios';
 
 class RecipeSearch extends Component {
     constructor() {
         super();
         this.state = {
-            searchString: null
+            searchString: "",
+            recipeList: []
         }
     }
 
     handleChange = (e) => {
         this.setState({
             search: e.target.value
+        })
+        var actuallyThis = this;
+        axios({
+            method: 'get',
+            url: 'http://localhost:8081/meal-planner/rest/recipe/searchRecipes/' + actuallyThis.state.searchString,
+            responseType: 'json'
+        })
+        .then(function (response) {
+            actuallyThis.setState({
+                 recipeList: response.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
         })
     }
 
@@ -26,7 +42,7 @@ class RecipeSearch extends Component {
                         <input className="validate" type="text" id="recipeSearch" onChange={this.handleChange}></input>
                     </div>
                 </div>
-                <RecipeSearchList searchString={this.state.searchString} editable={false} />
+                <RecipeSearchList recipeList={this.state.recipeList} editable={false} />
             </div>
         );
     }
