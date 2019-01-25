@@ -37,12 +37,18 @@ class Navbar extends Component {
                     <nav>
                         <div className="nav-wrapper grey darken-3">
                             <a href="#!" className="brand-logo center">Logo</a>
-                            <ul>
-                                <li className="nav-item"><Link to="/search" className="nav-link">Recipe Search</Link></li>
-                                <li className="nav-item"><Link to="/myrecipes" className="nav-link">My Recipes</Link></li>
-                                <li className="nav-item"><Link to="/mealplan" className="nav-link">Meal Plan</Link></li>
-                                <li className="nav-item"><Link to="/shoppinglist" className="nav-link">Shopping List</Link></li>
-                            </ul>
+                            {this.state.loggedIn ?
+                                <ul>
+                                    <li className="nav-item"><Link to="/search" className="nav-link">Recipe Search</Link></li>
+                                    <li className="nav-item"><Link to="/myrecipes" className="nav-link">My Recipes</Link></li>
+                                    <li className="nav-item"><Link to="/mealplan" className="nav-link">Meal Plan</Link></li>
+                                    <li className="nav-item"><Link to="/shoppinglist" className="nav-link">Shopping List</Link></li>
+                                </ul> :
+                                <ul>
+                                    <li className="nav-item"><Link to="/search" className="nav-link">Recipe Search</Link></li>
+                                </ul>
+                            }
+
                             <ul className="right">
                                 {this.state.loggedIn ?
                                     <li className="nav-item"><Link to="/search" className="nav-link" onClick={this.logOut}>Log Out</Link></li> :
@@ -56,7 +62,7 @@ class Navbar extends Component {
                     <Route path="/myrecipes" component={MyRecipes} />
                     <Route path="/mealplan" component={MealPlan} username={this.username} />
                     <Route path="/shoppinglist" component={ShoppingList} />
-                    <Route path="/login" render={() => <LoginPage handleLogin={this.setUsername} /> } />
+                    <Route path="/login" render={() => <LoginPage handleLogin={this.setUsername} />} />
                 </div>
             </Router>
         );
