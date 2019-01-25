@@ -7,7 +7,7 @@ class LoginPage extends Component {
         this.state = {
             username: null,
             password: null,
-            error: null
+            error: "enter user details"
         }
     }
 
