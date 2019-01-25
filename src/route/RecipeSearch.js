@@ -6,7 +6,7 @@ class RecipeSearch extends Component {
     constructor() {
         super();
         this.state = {
-            searchString: "",
+            searchString: null,
             recipeList: []
         }
     }
@@ -15,13 +15,15 @@ class RecipeSearch extends Component {
         this.setState({
             search: e.target.value
         })
+        var path = "http://localhost:8081/meal-planner/rest/recipe/search/" + this.state.searchString;
         var actuallyThis = this;
         axios({
             method: 'get',
-            url: 'http://localhost:8081/meal-planner/rest/recipe/searchRecipes/' + actuallyThis.state.searchString,
+            url: path,
             responseType: 'json'
         })
         .then(function (response) {
+            console.log(response.data)
             actuallyThis.setState({
                  recipeList: response.data
             })
