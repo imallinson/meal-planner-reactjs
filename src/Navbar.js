@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-import MyRecipes from './route/MyRecipes.js';
-import RecipeSearch from './route/RecipeSearch.js';
-import MealPlan from './route/MealPlan.js';
-import ShoppingList from './route/ShoppingList.js';
-import LoginPage from './route/LoginPage.js';
+import MyRecipes from './pages/MyRecipes.js';
+import RecipeSearch from './pages/RecipeSearch.js';
+import MealPlan from './pages/MealPlan.js';
+import ShoppingList from './pages/ShoppingList.js';
+import LoginPage from './pages/LoginPage.js';
 
 
 class Navbar extends Component {

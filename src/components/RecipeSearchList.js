@@ -6,11 +6,9 @@ class RecipeSearchList extends Component {
         if (this.props.recipeList.length === 0) {
             return null;
         } else {
-            for (var i = 0; i < this.props.recipeList.length; i++) {
+            for (let i = 0; i < this.props.recipeList.length; i++) {
                 return (
-                    <div className="row">
-                        <RecipeResult recipe={this.state.recipeList[i]} editable={this.props.editable} />
-                    </div>
+                    <RecipeResult recipe={this.state.recipeList[i]} editable={this.props.editable} />
                 );
             }
         }

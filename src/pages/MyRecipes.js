@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import RecipeSearchList from './RecipeSearchList.js';
+import RecipeSearchList from '../components/RecipeSearchList.js';
 import axios from 'axios';
 
 class MyRecipes extends Component {
     constructor() {
         super();
         this.state = {
-            recipeList: []
+            recipeList: [],
+            search: true
         }
     }
 
@@ -18,18 +19,26 @@ class MyRecipes extends Component {
             url: path,
             responseType: 'json'
         })
-        .then(function (response) {
-            actuallyThis.setState({
-                 recipeList: response.data
+            .then(function (response) {
+                actuallyThis.setState({
+                    recipeList: response.data
+                })
             })
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     addRecipe = () => {
-        
+        this.setState({
+            search: false
+        })
+    }
+
+    closeRecipe = () => {
+        this.setState({
+            search: true
+        })
     }
 
     render() {
@@ -40,10 +49,12 @@ class MyRecipes extends Component {
                 </div>
                 <div className="row">
                     <div className="col12 center">
-                        <button className="btn grey darken-2" type="button" onClick={this.addRecipe} >Add a Recipe</button>
+                        <button className="btn grey darken-2" type="button" >Add a Recipe</button>
                     </div>
-                </div>             
-                <RecipeSearchList recipeList={this.state.recipeList} editable={true} />
+                </div>
+                {this.state.search ?
+                <RecipeSearchList recipeList={this.state.recipeList} editable={true} /> :
+                <RecipePage closePage={this.closeRecipe} recipeID={-1} /> }
             </div>
         );
     }

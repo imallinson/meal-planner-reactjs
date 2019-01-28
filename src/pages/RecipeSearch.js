@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RecipeSearchList from './RecipeSearchList.js';
+import RecipeSearchList from '../components/RecipeSearchList.js';
 import axios from 'axios';
 
 class RecipeSearch extends Component {
